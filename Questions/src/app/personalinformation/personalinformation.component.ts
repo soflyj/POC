@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm, FormControl, FormGroup, Validators } from '@angular/forms';
 
+import { CustomValidators } from '../custom-validators'
+
 
 @Component({
   selector: 'app-personalinformation',
@@ -25,7 +27,7 @@ export class PersonalinformationComponent implements OnInit {
       ),
       'idnumber': new FormControl(
         null,
-        [Validators.required]
+        [Validators.required, CustomValidators.invalidIDNumber]
       ),
       'email': new FormControl(null, [Validators.required, Validators.email]),
       'telephonenumber': new FormControl(
@@ -38,13 +40,5 @@ export class PersonalinformationComponent implements OnInit {
 
   onSubmit() {
     console.log(this.personalinformationForm.value);
-  }
-
-  invalidIDNumber(control: FormControl): { [s: string]: boolean } {
-
-    if (false === false) {     
-      return { 'invalidIDNumber': true };
-    }
-    return null;
   }
 }
